@@ -1,0 +1,328 @@
+// Add Font Style
+$main-font: "Roboto Mono", monospace;
+// Color Variables
+$primary-color: white; // linear-gradient(to right, #023830, #1c826d)
+$secondary-color: #2c665a;
+$third-color: #31534c;
+
+// Text Color
+$text-color: black;
+
+// Mixin Transitions
+@mixin Transition($t-duration) {
+  transition: all $t-duration ease-out;
+}
+@mixin media($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $main-font;
+  width: 100%;
+  min-height: 100vh;
+  background: $primary-color;
+  color: $text-color;
+  overflow: hidden;
+  cursor: none;
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100vh;
+  //   background-color: white;
+  //   filter: brightness(75%);
+
+  //   inset: 0;
+  // }
+  //   @include media(1430px) {
+  //     overflow-x: hidden;
+  //     overflow-y: scroll;
+  //   }
+}
+
+header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  .menu-humb {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    z-index: 4;
+    :nth-child(2) {
+      transform: scale(1);
+    }
+    transform: rotate(0) translateY(0);
+
+    &.open {
+      :nth-child(2) {
+        transform: scale(0);
+      }
+      :nth-child(1) {
+        transform: rotate(45deg) translateY(5px);
+      }
+      :nth-child(3) {
+        transform: rotate(-45deg) translateY(-5px);
+      }
+    }
+
+    .line-humb {
+      width: 25px;
+      height: 3px;
+      background-color: $text-color;
+      margin: 4px;
+      @include Transition(0.5s);
+      &.line-mouse {
+        background-color: white;
+        transform: scale(1.5);
+      }
+    }
+  }
+
+  .menu-nav,
+  .menu-pres {
+    width: 50%;
+  }
+
+  .menu-nav {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($secondary-color, 0.4);
+    transform: translateY(100%);
+    @include Transition(1s);
+    z-index: 3;
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      margin: 30px;
+      font-size: 2.5rem;
+      transform: translateX(200%) rotate(90deg) scale(0);
+      @include Transition(1s);
+      font-weight: 500;
+      max-width: 100%;
+      text-shadow: 0px 14px 10px rgba(0, 0, 0, 0.15),
+        0px 24px 2px rgba(0, 0, 0, 0.1), 0px 34px 30px rgba(0, 0, 0, 0.1);
+      &.show {
+        transform: translateX(0%);
+      }
+      &.line-mousenav {
+        font-size: 2.8em;
+        color: white;
+      }
+    }
+    &.show {
+      transform: translateY(0%);
+    }
+    img {
+      width: 40px;
+      transform: translateY(5px);
+      @include media(767px) {
+        width: 30px;
+      }
+    }
+    @include media(1430px) {
+      width: 100%;
+      height: 50vh;
+      transform: translateX(200%) translateY(70%);
+      position: relative;
+
+      &.show {
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        transform: translateX(-100%) translateY(110%);
+      }
+      li {
+        font-size: 1.8rem;
+        color: rgba(black, 0.6);
+        font-weight: bold;
+        &.line-mousenav {
+          font-size: 1.9em;
+          color: white;
+        }
+      }
+    }
+  }
+  .menu-pres {
+    background-color: rgba($third-color, 0.4);
+    height: 100vh;
+    transform: translateY(-100%);
+    @include Transition(1s);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-height: 200px;
+      border-radius: 50%;
+      margin-top: -470px;
+      margin-left: -70px;
+      transition: all 0.5s ease-in-out;
+      transform: scale(0);
+      opacity: 0.9;
+      border: 4px solid rgba(white, 0.7);
+
+      &.show {
+        transform: scale(1.1);
+      }
+      &.reduce {
+        transform: scale(1);
+      }
+    }
+    &.show {
+      transform: translateY(0%);
+    }
+    @include media(1430px) {
+      width: 100%;
+      height: 50vh;
+      transform: translateX(-100%);
+      &.show {
+        transform: translateX(0%);
+        border-bottom-right-radius: 30px;
+      }
+      img {
+        margin-top: -20px;
+        max-height: 150px;
+      }
+    }
+    @include media(415px) {
+      img {
+        margin: auto;
+        max-height: 130px;
+      }
+    }
+  }
+}
+
+main {
+  position: absolute;
+  top: 30%;
+  left: 8%;
+  z-index: 1;
+
+  h1 {
+    font-size: 80px;
+    font-weight: 700;
+    width: fit-content;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 0;
+    }
+
+    &::after {
+      background-color: $primary-color;
+      animation: TypeWriter 4s steps(12) 1s forwards;
+      margin-top: 20px;
+    }
+    &::before {
+      background-color: $text-color;
+      animation: TypeWriter 4s steps(12) 1s forwards,
+        blink 500ms steps(12) infinite;
+      width: 4px;
+      z-index: 2;
+      bottom: 10%;
+      top: 10%;
+    }
+    &.color-mouse {
+      color: white;
+    }
+    @include media(1430px) {
+      font-size: 60px;
+      margin-top: 40px;
+      &::after {
+        margin-top: 0px;
+      }
+    }
+    @include media(767px) {
+      font-size: 40px;
+    }
+  }
+  h2 {
+    margin-top: 20px;
+    padding: 0 0 0 20px;
+    font-weight: 500;
+    max-width: 50ch;
+  }
+  .m-svg {
+    height: 400px;
+    color: green;
+    position: absolute;
+    top: 0;
+    right: -80%;
+    transform: rotate(180deg) scale(0);
+    z-index: -5;
+    box-shadow: 1px 1px 5px 0 rgba(black, 0.4);
+    // @include Transition(1s);
+    transition: all 0.5s ease-in-out;
+    // cursor: pointer;
+
+    &.shadow {
+      box-shadow: 7px 5px 5px 3px rgba(black, 0.2);
+    }
+    &.popp {
+      transform: rotate(45deg) scale(1);
+    }
+    @include media(415px) {
+      display: none;
+    }
+  }
+}
+
+@keyframes TypeWriter {
+  to {
+    left: 100%;
+  }
+}
+@keyframes blink {
+  to {
+    background: transparent;
+  }
+}
+
+.cursor {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid black;
+  z-index: 999;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
+
+  transition: transform 0.25s linear;
+  &.curs-grow {
+    transform: translate(-50%, -50%) scale(2);
+    background-color: rgba($secondary-color, 0.5);
+    filter: blur(3px);
+  }
+  &.curs-growhumb {
+    transform: translate(-50%, -50%) scale(1.6);
+    background-color: #023830;
+    z-index: -1;
+  }
+  &.curs-grownav {
+    transform: translate(-50%, -50%) scale(2);
+    background-color: #023830;
+    z-index: -1;
+  }
+}

@@ -1,0 +1,398 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  color: black;
+  overflow: hidden;
+  cursor: none;
+}
+
+header {
+  width: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .menu-humb {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  z-index: 4;
+  -webkit-transform: rotate(0) translateY(0);
+          transform: rotate(0) translateY(0);
+}
+
+header .menu-humb :nth-child(2) {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+header .menu-humb.open :nth-child(2) {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+header .menu-humb.open :nth-child(1) {
+  -webkit-transform: rotate(45deg) translateY(5px);
+          transform: rotate(45deg) translateY(5px);
+}
+
+header .menu-humb.open :nth-child(3) {
+  -webkit-transform: rotate(-45deg) translateY(-5px);
+          transform: rotate(-45deg) translateY(-5px);
+}
+
+header .menu-humb .line-humb {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 4px;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+header .menu-humb .line-humb.line-mouse {
+  background-color: white;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+header .menu-nav,
+header .menu-pres {
+  width: 50%;
+}
+
+header .menu-nav {
+  width: 50%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(44, 102, 90, 0.4);
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  z-index: 3;
+}
+
+header .menu-nav ul {
+  list-style: none;
+}
+
+header .menu-nav li {
+  margin: 30px;
+  font-size: 2.5rem;
+  -webkit-transform: translateX(200%) rotate(90deg) scale(0);
+          transform: translateX(200%) rotate(90deg) scale(0);
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  font-weight: 500;
+  max-width: 100%;
+  text-shadow: 0px 14px 10px rgba(0, 0, 0, 0.15), 0px 24px 2px rgba(0, 0, 0, 0.1), 0px 34px 30px rgba(0, 0, 0, 0.1);
+}
+
+header .menu-nav li.show {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+header .menu-nav li.line-mousenav {
+  font-size: 2.8em;
+  color: white;
+}
+
+header .menu-nav.show {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
+header .menu-nav img {
+  width: 40px;
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
+}
+
+@media (max-width: 767px) {
+  header .menu-nav img {
+    width: 30px;
+  }
+}
+
+@media (max-width: 1430px) {
+  header .menu-nav {
+    width: 100%;
+    height: 50vh;
+    -webkit-transform: translateX(200%) translateY(70%);
+            transform: translateX(200%) translateY(70%);
+    position: relative;
+  }
+  header .menu-nav.show {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    -webkit-transform: translateX(-100%) translateY(110%);
+            transform: translateX(-100%) translateY(110%);
+  }
+  header .menu-nav li {
+    font-size: 1.8rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+  }
+  header .menu-nav li.line-mousenav {
+    font-size: 1.9em;
+    color: white;
+  }
+}
+
+header .menu-pres {
+  background-color: rgba(49, 83, 76, 0.4);
+  height: 100vh;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .menu-pres img {
+  max-height: 200px;
+  border-radius: 50%;
+  margin-top: -470px;
+  margin-left: -70px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  opacity: 0.9;
+  border: 4px solid rgba(255, 255, 255, 0.7);
+}
+
+header .menu-pres img.show {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+header .menu-pres img.reduce {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+header .menu-pres.show {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
+@media (max-width: 1430px) {
+  header .menu-pres {
+    width: 100%;
+    height: 50vh;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  header .menu-pres.show {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    border-bottom-right-radius: 30px;
+  }
+  header .menu-pres img {
+    margin-top: -20px;
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 415px) {
+  header .menu-pres img {
+    margin: auto;
+    max-height: 130px;
+  }
+}
+
+main {
+  position: absolute;
+  top: 30%;
+  left: 8%;
+  z-index: 1;
+}
+
+main h1 {
+  font-size: 80px;
+  font-weight: 700;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+}
+
+main h1::before, main h1::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 0;
+}
+
+main h1::after {
+  background-color: white;
+  -webkit-animation: TypeWriter 4s steps(12) 1s forwards;
+          animation: TypeWriter 4s steps(12) 1s forwards;
+  margin-top: 20px;
+}
+
+main h1::before {
+  background-color: black;
+  -webkit-animation: TypeWriter 4s steps(12) 1s forwards, blink 500ms steps(12) infinite;
+          animation: TypeWriter 4s steps(12) 1s forwards, blink 500ms steps(12) infinite;
+  width: 4px;
+  z-index: 2;
+  bottom: 10%;
+  top: 10%;
+}
+
+main h1.color-mouse {
+  color: white;
+}
+
+@media (max-width: 1430px) {
+  main h1 {
+    font-size: 60px;
+    margin-top: 40px;
+  }
+  main h1::after {
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  main h1 {
+    font-size: 40px;
+  }
+}
+
+main h2 {
+  margin-top: 20px;
+  padding: 0 0 0 20px;
+  font-weight: 500;
+  max-width: 50ch;
+}
+
+main .m-svg {
+  height: 400px;
+  color: green;
+  position: absolute;
+  top: 0;
+  right: -80%;
+  -webkit-transform: rotate(180deg) scale(0);
+          transform: rotate(180deg) scale(0);
+  z-index: -5;
+  -webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.4);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+main .m-svg.shadow {
+  -webkit-box-shadow: 7px 5px 5px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 7px 5px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+main .m-svg.popp {
+  -webkit-transform: rotate(45deg) scale(1);
+          transform: rotate(45deg) scale(1);
+}
+
+@media (max-width: 415px) {
+  main .m-svg {
+    display: none;
+  }
+}
+
+@-webkit-keyframes TypeWriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes TypeWriter {
+  to {
+    left: 100%;
+  }
+}
+
+@-webkit-keyframes blink {
+  to {
+    background: transparent;
+  }
+}
+
+@keyframes blink {
+  to {
+    background: transparent;
+  }
+}
+
+.cursor {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid black;
+  z-index: 999;
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.25s linear;
+  transition: -webkit-transform 0.25s linear;
+  transition: transform 0.25s linear;
+  transition: transform 0.25s linear, -webkit-transform 0.25s linear;
+}
+
+.cursor.curs-grow {
+  -webkit-transform: translate(-50%, -50%) scale(2);
+          transform: translate(-50%, -50%) scale(2);
+  background-color: rgba(44, 102, 90, 0.5);
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+}
+
+.cursor.curs-growhumb {
+  -webkit-transform: translate(-50%, -50%) scale(1.6);
+          transform: translate(-50%, -50%) scale(1.6);
+  background-color: #023830;
+  z-index: -1;
+}
+
+.cursor.curs-grownav {
+  -webkit-transform: translate(-50%, -50%) scale(2);
+          transform: translate(-50%, -50%) scale(2);
+  background-color: #023830;
+  z-index: -1;
+}
+/*# sourceMappingURL=style.css.map */
